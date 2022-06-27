@@ -1,1 +1,1 @@
-web: waitress-serve  --port=$PORT Rmart.wsgi:application
+web: gunicorn Rmart.wsgi --log-file -
