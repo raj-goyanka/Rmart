@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "%y8c8=^!703c*ry#14lv2+)gwq%cs7egu6-w0n+o(-j#z^z)*3"
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['rmart-rajgoyanka.herokuapp.com','127.0.0.1']
 
