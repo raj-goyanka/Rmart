@@ -35,6 +35,9 @@ def register(request):
          user=Account.objects.create_user(first_name=first_name, last_name=last_name,email=email,password=password,username=username)
          user.phone_number=phone_number   
          user.save()
+         # UserProfile Creation.
+         userprofile=UserProfile(user=user)
+         userprofile.save()
          # User Activation Email
          current_site=get_current_site(request)
          mail_subject="Please activate your account"
@@ -136,7 +139,10 @@ def activate(request,uidb64=None,token=None):
 @login_required(login_url='login')
 def dashboard(request):
     orders=Order.objects.order_by('-created_at').filter(user_id=request.user.id,is_ordered=True)
-    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    try: 
+     userprofile=UserProfile.objects.get(user_id=request.user.id)
+    except UserProfile.DoesNotExist:
+     pass
     orders_count=0
     if orders is not None:
       orders_count=orders.count()
