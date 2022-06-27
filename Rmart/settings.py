@@ -6,10 +6,11 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 SECRET_KEY =os.environ.get('SECRET_KEY')
+# SECRET_KEY="^!703c*ry#14lv2+)gwq%cs7egu6-w0n+o(-j#z^z)*3"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG')
-
+# DEBUG= True
 ALLOWED_HOSTS = ['rmart-rajgoyanka.herokuapp.com','127.0.0.1']
 
 # Application definition
@@ -79,6 +80,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
