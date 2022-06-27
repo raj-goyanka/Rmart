@@ -12,11 +12,11 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY =os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =  os.environ.get('DEBUG')
+DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = ['rmart-rajgoyanka.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['https://rmart-rajgoyanka.herokuapp.com/','127.0.0.1']
 
 
 # Application definition
@@ -148,3 +148,10 @@ EMAIL_PORT= os.environ.get('EMAIL_PORT')
 EMAIL_HOST_USER=os.environ.get('EMAIL_HOST_USER') 
 EMAIL_HOST_PASSWORD= os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS=os.environ.get('EMAIL_USE_TLS')
+
+
+
+# ie if Heroku server
+if 'DATABASE_URL' in os.environ:
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.config()}
